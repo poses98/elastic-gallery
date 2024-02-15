@@ -1,0 +1,56 @@
+.elastic-gallery-container{
+    display: 'flex';
+    align-items: 'flex-start';
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.elastic-item{
+    cursor: pointer;
+    margin: 5px;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation: slideIn 0.5s ease-out forwards;
+    transform-origin: center;
+    display: flex;
+    flex-grow: 1; /* Añadido para permitir que los elementos se expandan para llenar el espacio disponible */
+    flex-basis: calc((100% / 3) - 10px); /* Añadido para establecer la base de flexión en un tercio del contenedor, ajustado por el margen */
+}
+
+.elastic-item:hover{
+    transform: scale(0.95);
+}
+
+.elastic-item > * {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+@keyframes slideIn {
+    0% {
+      transform: translateX(100%); /* Comienza fuera de la vista, a la derecha */
+      opacity: 0;
+    }
+    40%{
+        opacity: 1;
+    }
+    80% {
+      transform: translateX(-10%); /* Se desliza un poco más allá del punto de destino para el efecto elástico */
+    }
+    99%{
+        transform: translateX(0); /* Termina en la posición final */
+
+    }
+    100% {
+        opacity: 1;
+        transition: transform 1s linear;
+        
+    }
+  }
