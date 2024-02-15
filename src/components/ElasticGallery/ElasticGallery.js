@@ -1,8 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'; // Importing necessary hooks and React from the react library
 import './ElasticGallery.css'; // Importing the CSS file for styling
 
-const ElasticGallery = ({ content }) => {
-  // Defining a functional component called ElasticGallery that takes 'content' as a prop
+const ElasticGallery = ({ content, columnNumber }) => {
   const containerRef = useRef(null); // Creating a ref to access the DOM element
   const [windowWidth, setWindowWidth] = useState(null); // Creating a state variable for the window width
 
@@ -13,11 +12,12 @@ const ElasticGallery = ({ content }) => {
 
     const items = Array.from(container.children); // Creating an array from the children of the container
     let columns = []; // Initializing an empty array for the columns
-    let numColumns = Math.max(1, Math.floor(container.offsetWidth / 300)); // Calculating the number of columns based on the window width
-    console.log(container);
+    let numColumns =
+      columnNumber || Math.max(1, Math.floor(container.offsetWidth / 300)); // Calculating the number of columns based on the window width
     // Creating the columns
     for (let i = 0; i < numColumns; i++) {
       columns[i] = document.createElement('div'); // Creating a new div element for each column
+      columns[i].style.width = `${100 / numColumns}%`;
       container.appendChild(columns[i]); // Appending the column to the container
     }
 
@@ -43,11 +43,11 @@ const ElasticGallery = ({ content }) => {
       items.forEach((item) => container.appendChild(item)); // Appending all items back to the container
       columns.forEach((column) => container.removeChild(column)); // Removing all columns from the container
     };
-  }, [content]); // Running the effect when the 'content' or 'windowWidth' changes
+  }, [content, columnNumber, windowWidth]); // Running the effect when the 'content' or 'windowWidth' changes
 
   useEffect(() => {
     const handleResize = () => {
-      setTimeout(() => setWindowWidth(window.innerWidth), 1000); // Updating the window width after a delay
+      setWindowWidth(window.innerWidth);
     };
 
     window.addEventListener('resize', handleResize); // Adding an event listener for the window resize event

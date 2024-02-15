@@ -42,7 +42,12 @@ function App() {
   return (
     <div
       className="App"
-      style={{ backgroundColor: '#00171f', margin: 0, padding: 0 }}
+      style={{
+        backgroundColor: '#00171f',
+        margin: 0,
+        padding: 0,
+        minHeight: '100vh',
+      }}
     >
       <ElasticGallery content={contentIrregular} />
     </div>

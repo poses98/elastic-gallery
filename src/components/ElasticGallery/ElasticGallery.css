@@ -30,9 +30,6 @@
     object-fit: cover;
 }
 
-
-
-
 @keyframes slideIn {
     0% {
       transform: translateX(100%); /* Comienza fuera de la vista, a la derecha */
