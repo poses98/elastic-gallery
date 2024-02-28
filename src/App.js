@@ -3,13 +3,6 @@ import './App.css';
 import ElasticGallery from './components/ElasticGallery/ElasticGallery.js';
 
 function App() {
-  const [numElem, setNumElem] = useState(0);
-  const [compPlaceholder, setCompPlaceholder] = useState(null);
-
-  useEffect(() => {
-    for (let i = 0; i < numElem; i++) {}
-  }, [numElem]);
-
   const contentIrregular = [
     <img src="https://placehold.co/300x200/EEE/31343C" />,
     <img src="https://placehold.co/300x250/EEE/31343C" />,
@@ -49,7 +42,7 @@ function App() {
         minHeight: '100vh',
       }}
     >
-      <ElasticGallery content={contentIrregular} />
+      <ElasticGallery content={contentIrregular} columnNumber={4} />
     </div>
   );
 }
